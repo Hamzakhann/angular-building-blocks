@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ServerService } from './server.service';
-
+// import {Response} from '@angular/http';
 
 @Component({
   selector: 'app-root',
@@ -35,6 +35,18 @@ export class AppComponent {
       (errors) => console.log(errors)
       )
   }
+
+  onGet(){
+    this.serverService.getServers()
+    .subscribe(
+      (servers : any[])=> {
+        console.log(servers)
+        this.servers = servers
+      },
+      (errors) => console.log(errors)  
+    )
+  }
+
   private generateId() {
     return Math.round(Math.random() * 10000);
   }
